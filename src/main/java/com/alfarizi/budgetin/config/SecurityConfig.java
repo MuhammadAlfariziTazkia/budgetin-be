@@ -1,7 +1,6 @@
 package com.alfarizi.budgetin.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,9 +18,6 @@ import java.util.List;
 
 @Configuration
 public class SecurityConfig {
-
-    @Value("${app.cors.allowed.origin}")
-    private String allowedOrigin;
 
     @Autowired
     private JWTAuthenticationFilter jwtAuthenticationFilter;
@@ -46,10 +42,11 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOriginPatterns(List.of("*")); // ← ini solusi fleksibel untuk semua origin
+        config.setAllowedOrigins(List.of("https://budgetin-one.vercel.app")); // ganti sesuai origin frontend kamu
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true); // ← tetap bisa pakai credentials
+        config.setAllowCredentials(true); // kalau pakai JWT di cookie atau Authorization header
+        config.setMaxAge(3600L); // tambahkan ini untuk cache preflight
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
