@@ -17,9 +17,9 @@ jobs:
           script: |
             cd /opt/budgetin-be
             git pull origin main
-            docker pull your-docker-image:latest
+            docker pull alfarizi/budgetin-db:latest
             docker stop budgetin-be || true
             docker rm budgetin-be || true
             docker run -d -p 8080:8080 \
               -e APP_CORS_ALLOWED_ORIGIN=${{ secrets.APP_CORS_ALLOWED_ORIGIN }} \
-              --name budgetin-be your-docker-image:latest
+              --name budgetin-be alfarizi/budgetin-db:latest
