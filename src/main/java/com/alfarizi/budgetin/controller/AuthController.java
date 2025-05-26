@@ -3,7 +3,6 @@ package com.alfarizi.budgetin.controller;
 import com.alfarizi.budgetin.dto.BaseResponseDto;
 import com.alfarizi.budgetin.dto.LoginRequestDto;
 import com.alfarizi.budgetin.dto.RegisterRequestDto;
-import com.alfarizi.budgetin.model.User;
 import com.alfarizi.budgetin.service.intr.JWTService;
 import com.alfarizi.budgetin.service.intr.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

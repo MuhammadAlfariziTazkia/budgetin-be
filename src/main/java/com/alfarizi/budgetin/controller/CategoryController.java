@@ -34,7 +34,6 @@ public class CategoryController {
             @RequestParam(required = false) Integer year,
             @RequestParam(required = false) Integer month
     ) {
-        System.out.println("LALALAA");
         return (Objects.nonNull(year) && Objects.nonNull(month))
                 ? success(categoryService.getByYearAndMonth(year, month))
                 : success(categoryService.getAll());
