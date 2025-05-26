@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: rename-budget-to-amount
+      author: alfarizi
+      changes:
+        - renameColumn:
+            tableName: transactions
+            oldColumnName: budget
+            newColumnName: amount
+            columnDataType: BIGINT

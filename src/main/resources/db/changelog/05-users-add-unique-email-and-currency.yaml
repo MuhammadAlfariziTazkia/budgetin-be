@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-unique-constraint-email
+      author: alfarizi
+      changes:
+        - addUniqueConstraint:
+            columnNames: email
+            constraintName: uq_users_email
+            tableName: users
+
+  - changeSet:
+      id: add-currency-column
+      author: alfarizi
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: currency
+                  type: varchar(3)
+                  constraints:
+                    nullable: true

@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/01-create-users-table.yaml
+  - include:
+      file: db/changelog/02-create-categories-table.yaml
+  - include:
+      file: db/changelog/03-create-transactions-table.yaml
+  - include:
+      file: db/changelog/04-rename-budget-to-amount.yaml
+  - include:
+      file: db/changelog/05-users-add-unique-email-and-currency.yaml
