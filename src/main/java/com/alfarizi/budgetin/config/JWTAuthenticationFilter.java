@@ -30,7 +30,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        
+
         String authHeader = request.getHeader("Authorization");
 
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
