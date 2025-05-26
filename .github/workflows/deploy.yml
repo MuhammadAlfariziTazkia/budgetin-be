@@ -1,0 +1,25 @@
+name: Deploy to VPS on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /opt/budgetin-be
+            git pull origin main
+            docker pull your-docker-image:latest
+            docker stop budgetin-be || true
+            docker rm budgetin-be || true
+            docker run -d -p 8080:8080 \
+              -e APP_CORS_ALLOWED_ORIGIN=${{ secrets.APP_CORS_ALLOWED_ORIGIN }} \
+              --name budgetin-be your-docker-image:latest
