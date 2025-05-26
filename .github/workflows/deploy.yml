@@ -16,21 +16,10 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd /opt/budgetin-be
-            git fetch --tags
-            git checkout ${{ github.ref_name }} # checkout tag yang di-release
+            git pull origin main
             docker build -t alfarizi/budgetin-db:latest .
-            docker rm -f budgetin-be || true
+            docker stop budgetin-be || true
+            docker rm budgetin-be || true
             docker run -d -p 8080:8080 \
               -e APP_CORS_ALLOWED_ORIGIN=${{ secrets.APP_CORS_ALLOWED_ORIGIN }} \
               --name budgetin-be alfarizi/budgetin-db:latest
-
-            # Opsional: tunggu container siap (cek port 8080)
-            for i in {1..10}; do
-              if curl -s http://localhost:8080/health || curl -s http://localhost:8080/; then
-                echo "App is up!"
-                break
-              else
-                echo "Waiting for app to be ready..."
-                sleep 3
-              fi
-            done
