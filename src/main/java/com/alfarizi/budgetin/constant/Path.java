@@ -7,6 +7,7 @@ public class Path {
     public static final String AUTH_PATH = BASE_API_PATH + "/auth";
     public static final String CATEGORY_PATH = PRIVATE_API_PATH + "/category";
     public static final String TRANSACTION_PATH = PRIVATE_API_PATH + "/transaction";
+    public static final String USER_PATH = PRIVATE_API_PATH + "/user";
 
     public static final String ID = "/{id}";
     public static final String LOGIN = "/login";
