@@ -18,6 +18,7 @@ public class CorsConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
+        System.out.println("Allowed origin: " + allowedOrigin);
         config.setAllowedOrigins(List.of(allowedOrigin)); // ganti sesuai origin frontend kamu
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));

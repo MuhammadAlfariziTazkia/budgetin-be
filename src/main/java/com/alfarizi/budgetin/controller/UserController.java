@@ -17,7 +17,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    
+
     @GetMapping
     public ResponseEntity<BaseResponseDto> getUser () {
         return success(userService.getAuthenticatedUser());
